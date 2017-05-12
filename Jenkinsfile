@@ -12,11 +12,11 @@ pipeline {
                 sh './test.sh'
             }
         }
-        stage('Deploy') {
-            steps {
-                sh './deploy.sh'
-            }
-        }
+        #stage('Deploy') {
+        #    steps {
+        #        sh './deploy.sh'
+        #    }
+        #}
     }
     post {
         always {
