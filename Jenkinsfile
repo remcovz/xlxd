@@ -1,5 +1,5 @@
 pipeline {
-    agent label 'vps' 
+    agent { label 'vps' }
 
     stages {
         stage('Build') { 
