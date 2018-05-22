@@ -2,8 +2,8 @@
 
 session_start();
 
-if (file_exists("./pgs/functions.php"))  { require_once("./pgs/functions.php");  } else { die("functions.php does not exist.");  }
-if (file_exists("./pgs/config.inc.php")) { require_once("./pgs/config.inc.php"); } else { die("config.inc.php does not exist."); }
+if (file_exists("./pgs/functions.php"))                                { require_once("./pgs/functions.php");                               } else { die("functions.php does not exist.");  }
+if (file_exists("./pgs/config.inc.php")) 										  { require_once("./pgs/config.inc.php");                              } else { die("config.inc.php does not exist."); }
 
 if (!class_exists('ParseXML'))   require_once("./pgs/class.parsexml.php");
 if (!class_exists('Node'))       require_once("./pgs/class.node.php");
@@ -22,34 +22,45 @@ $Reflector->LoadXML();
 if ($CallingHome['Active']) { 
    
    $CallHomeNow = false;
+   $LastSync = 0;
+   $Hash = "";
+   
    if (!file_exists($CallingHome['HashFile'])) {
-      $Hash = CreateCode(16);
-      $LastSync = 0;
-      $Ressource = @fopen($CallingHome['HashFile'],"w");
-      if ($Ressource) {
-         @fwrite($Ressource, "<?php\n");
-         @fwrite($Ressource, "\n".'$LastSync = 0;');
-         @fwrite($Ressource, "\n".'$Hash     = "'.$Hash.'";');
-         @fwrite($Ressource, "\n\n".'?>');
-         @fclose($Ressource);
-         @exec("chmod 777 ".$CallingHome['HashFile']);
-         $CallHomeNow = true;
-      }
+      $Ressource = fopen($CallingHome['HashFile'], "w+"); 
+      if ($Ressource) { 
+         $Hash = CreateCode(16);
+		   @fwrite($Ressource, "<?php\n"); 
+		   @fwrite($Ressource, "\n".'$Hash = "'.$Hash.'";'); 
+		   @fwrite($Ressource, "\n\n".'?>'); 
+		   @fflush($Ressource); 
+		   @fclose($Ressource); 
+		   @chmod($HashFile, 0777); 
+		}
    }
    else {
-      include($CallingHome['HashFile']);
-      if ($LastSync < (time() - $CallingHome['PushDelay'])) { 
-         $Ressource = @fopen($CallingHome['HashFile'],"w");
-         if ($Ressource) {
-            @fwrite($Ressource, "<?php\n");
-            @fwrite($Ressource, "\n".'$LastSync = '.time().';');
-            @fwrite($Ressource, "\n".'$Hash     = "'.$Hash.'";');
-            @fwrite($Ressource, "\n\n".'?>');
-            @fclose($Ressource);
+      require_once($CallingHome['HashFile']);
+   }
+   
+   if (@file_exists($CallingHome['LastCallHomefile'])) {
+      if (@is_readable($CallingHome['LastCallHomefile'])) {
+         $tmp      = @file($CallingHome['LastCallHomefile']);
+         if (isset($tmp[0])) {
+            $LastSync = $tmp[0];
          }
-         $CallHomeNow = true;
+         unset($tmp);
       }
    }
+         
+   if ($LastSync < (time() - $CallingHome['PushDelay'])) { 
+      $CallHomeNow = true;
+      $Ressource = @fopen($CallingHome['LastCallHomefile'], "w+"); 
+	   if ($Ressource) { 
+	      @fwrite($Ressource, time()); 
+		   @fflush($Ressource); 
+		   @fclose($Ressource); 
+		   @chmod($HashFile, 0777); 
+		}
+   }  
    
    if ($CallHomeNow || isset($_GET['callhome'])) {
       $Reflector->SetCallingHome($CallingHome, $Hash);
@@ -58,12 +69,11 @@ if ($CallingHome['Active']) {
       $Reflector->PrepareReflectorXML();
       $Reflector->CallHome();
    }
+   
 }
 else {
    $Hash = "";
 }
-
-
 
 
 ?><!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -87,12 +97,19 @@ else {
    <script>
       var PageRefresh;
       
-      function ReloadPage() {
+      function ReloadPage() {';
+     if (($_SERVER['REQUEST_METHOD'] === 'POST') || isset($_GET['do'])) {
+       echo '
          document.location.href = "./index.php';
-     if (isset($_GET['show'])) {
-        echo '?show='.$_GET['show'];
+       if (isset($_GET['show'])) {
+         echo '?show='.$_GET['show'];
+       }
+       echo '";';
+     } else {
+       echo '
+         document.location.reload();';
      }
-     echo '";
+     echo '
       }';
 
      if (!isset($_GET['show']) || (($_GET['show'] != 'liveircddb') && ($_GET['show'] != 'reflectors') && ($_GET['show'] != 'interlinks'))) {
@@ -118,7 +135,21 @@ else {
       <div id="menu">
          <table border="0">
             <tr>
-               <td><a href="./index.php" class="menulink<?php if ($_GET['show'] == '') { echo 'active'; } ?>">Users / Modules</a></td><td><a href="./index.php?show=repeaters" class="menulink<?php if ($_GET['show'] == 'repeaters') { echo 'active'; } ?>">Repeaters / Nodes (<?php echo $Reflector->NodeCount(); ?>)</a></td><td><a href="./index.php?show=peers" class="menulink<?php if ($_GET['show'] == 'peers') { echo 'active'; } ?>">Peers (<?php echo $Reflector->PeerCount(); ?>)</a></td><td><a href="./index.php?show=reflectors" class="menulink<?php if ($_GET['show'] == 'reflectors') { echo 'active'; } ?>">Reflectorlist</a></td><td><a href="./index.php?show=liveircddb" class="menulink<?php if ($_GET['show'] == 'liveircddb') { echo 'active'; } ?>">D-Star live</a></td>
+               <td><a href="./index.php" class="menulink<?php if ($_GET['show'] == '') { echo 'active'; } ?>">Users / Modules</a></td>
+               <td><a href="./index.php?show=repeaters" class="menulink<?php if ($_GET['show'] == 'repeaters') { echo 'active'; } ?>">Repeaters / Nodes (<?php echo $Reflector->NodeCount(); ?>)</a></td>
+               <td><a href="./index.php?show=peers" class="menulink<?php if ($_GET['show'] == 'peers') { echo 'active'; } ?>">Peers (<?php echo $Reflector->PeerCount(); ?>)</a></td>
+               <td><a href="./index.php?show=reflectors" class="menulink<?php if ($_GET['show'] == 'reflectors') { echo 'active'; } ?>">Reflectorlist</a></td>
+               <td><a href="./index.php?show=liveircddb" class="menulink<?php if ($_GET['show'] == 'liveircddb') { echo 'active'; } ?>">D-Star live</a></td>
+               <?php
+               
+               if ($PageOptions['Traffic']['Show']) {
+                   echo '
+               <td><a href="./index.php?show=traffic" class="menulink';
+                   if ($_GET['show'] == 'traffic') { echo 'active'; }
+                   echo '">Traffic statistics</a></td>';
+               }
+               
+               ?>
             </tr>
           </table>
       </div>
@@ -141,6 +172,7 @@ else {
       case 'liveircddb' : require_once("./pgs/liveircddb.php"); break;
       case 'peers'      : require_once("./pgs/peers.php"); break;
       case 'reflectors' : require_once("./pgs/reflectors.php"); break;
+      case 'traffic'		: require_once("./pgs/traffic.php"); break;
       default           : require_once("./pgs/users.php");
    }
 
