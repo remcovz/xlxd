@@ -60,8 +60,8 @@
 
 // reflector ---------------------------------------------------
 
-#define NB_OF_MODULES                 10
-//#define NB_OF_MODULES                   NB_MODULES_MAX
+//#define NB_OF_MODULES                 10
+#define NB_OF_MODULES                   NB_MODULES_MAX
 
 // protocols ---------------------------------------------------
 
@@ -141,11 +141,11 @@
 
 // system paths -------------------------------------------------
 
-#define XML_PATH                        "/var/log/xlxd.xml"
-#define WHITELIST_PATH                  "/xlxd/xlxd.whitelist"
-#define BLACKLIST_PATH                  "/xlxd/xlxd.blacklist"
-#define INTERLINKLIST_PATH              "/xlxd/xlxd.interlink"
-#define DEBUGDUMP_PATH                  "/var/log/xlxd.debug"
+#define XML_PATH                      "/var/log/xlxd2.xml"
+#define WHITELIST_PATH                "/home/dextra/xlx088/xlxd/xlxd.whitelist"
+#define BLACKLIST_PATH                "/home/dextra/xlx088/xlxd/xlxd.blacklist"
+#define INTERLINKLIST_PATH            "/home/dextra/xlx088/xlxd/xlxd.interlink"
+#define DEBUGDUMP_PATH                "/var/log/xlxd2.debug"
 
 // system constants ---------------------------------------------
 
