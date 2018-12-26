@@ -76,7 +76,7 @@ else {
 }
 
 
-?><!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.0 Strict//EN"
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -94,32 +94,32 @@ else {
 
    if ($PageOptions['PageRefreshActive']) {
       echo '
+   <script src="./js/jquery-1.12.4.min.js"></script>
    <script>
       var PageRefresh;
       
-      function ReloadPage() {';
-     if (($_SERVER['REQUEST_METHOD'] === 'POST') || isset($_GET['do'])) {
-       echo '
-         document.location.href = "./index.php';
-       if (isset($_GET['show'])) {
-         echo '?show='.$_GET['show'];
-       }
-       echo '";';
-     } else {
-       echo '
-         document.location.reload();';
-     }
-     echo '
+      function ReloadPage() {
+         $.get("./index.php'.(isset($_GET['show'])?'?show='.$_GET['show']:'').'", function(data) {
+            var BodyStart = data.indexOf("<bo"+"dy");
+            var BodyEnd = data.indexOf("</bo"+"dy>");
+            if ((BodyStart >= 0) && (BodyEnd > BodyStart)) {
+               BodyStart = data.indexOf(">", BodyStart)+1;
+               $("body").html(data.substring(BodyStart, BodyEnd));
+            }
+         })
+            .always(function() {
+               PageRefresh = setTimeout(ReloadPage, '.$PageOptions['PageRefreshDelay'].');
+            });
       }';
 
      if (!isset($_GET['show']) || (($_GET['show'] != 'liveircddb') && ($_GET['show'] != 'reflectors') && ($_GET['show'] != 'interlinks'))) {
          echo '
-     PageRefresh = setTimeout(ReloadPage, '.$PageOptions['PageRefreshDelay'].');';
+      PageRefresh = setTimeout(ReloadPage, '.$PageOptions['PageRefreshDelay'].');';
      }
      echo '
 
       function SuspendPageRefresh() {
-        clearTimeout(PageRefresh);
+         clearTimeout(PageRefresh);
       }
    </script>';
    }
@@ -130,7 +130,7 @@ else {
 <body>
    <?php if (file_exists("./tracking.php")) { include_once("tracking.php"); }?>
    <div id="top"><img src="./img/header.jpg" alt="XLX Multiprotocol Gateway Reflector" style="margin-top:15px;" />
-      <br />&nbsp;&nbsp;&nbsp;<?php echo $Reflector->GetReflectorName(); ?>&nbsp;v<?php echo $Reflector->GetVersion(); ?>&nbsp;-&nbsp;Dashboard v<?php echo $PageOptions['DashboardVersion']; ?>&nbsp;&nbsp;/&nbsp;&nbsp;Service uptime: <span id="suptime"><?php echo FormatSeconds($Reflector->GetServiceUptime()); ?></span></div>
+      <br />&nbsp;&nbsp;&nbsp;<?php echo $Reflector->GetReflectorName(); ?>&nbsp;v<?php echo $Reflector->GetVersion(); ?>&nbsp;-&nbsp;Dashboard v<?php echo $PageOptions['DashboardVersion']; ?>&nbsp;<?php echo $PageOptions['CustomTXT']; ?>&nbsp;&nbsp;/&nbsp;&nbsp;Service uptime: <span id="suptime"><?php echo FormatSeconds($Reflector->GetServiceUptime()); ?></span></div>
    <div id="menubar">
       <div id="menu">
          <table border="0">
