@@ -38,7 +38,7 @@ $PageOptions['ModuleNames'] = array();					// Module nomination
 $PageOptions['ModuleNames']['A']                     = 'Internationaal';
 $PageOptions['ModuleNames']['B']                     = 'Nederland';
 $PageOptions['ModuleNames']['C']                     = 'Experimenten';
-$PageOptions['ModuleNames']['D']                     = '';
+$PageOptions['ModuleNames']['T']                     = 'Peanut testing';
 
 $PageOptions['MetaDescription']                      = 'XLX is a D-Star Reflector System for Ham Radio Operators.';	// Meta Tag Values, usefull for Search Engine
 $PageOptions['MetaKeywords']                         = 'Ham Radio, D-Star, XReflector, XLX, XRF, DCS, REF, ';		// Meta Tag Values, usefull forSearch Engine
@@ -65,10 +65,10 @@ $CallingHome['LastCallHomefile']                     = "/tmp/lastcallhome-xlx088
 $CallingHome['OverrideIPAddress']                    = "194.109.192.235";					// Insert your IP address here. Leave blank for autodetection. No need to enter a fake address.
 $CallingHome['InterlinkFile']                        = "/home/dextra/xlx088/xlxd/xlxd.interlink";			// Path to interlink file
 
-$VNStat['Interfaces']                                = array();
-$VNStat['Interfaces'][0]['Name']                     = 'eth0';
-$VNStat['Interfaces'][0]['Address']                  = 'eth0';
-$VNStat['Binary']                                    = '/usr/bin/vnstat';
+//$VNStat['Interfaces']                                = array();
+//$VNStat['Interfaces'][0]['Name']                     = 'eth0';
+//$VNStat['Interfaces'][0]['Address']                  = 'eth0';
+//$VNStat['Binary']                                    = '/usr/bin/vnstat';
 
 /*   
 include an extra config file for people who dont like to mess with shipped config.ing.php   
