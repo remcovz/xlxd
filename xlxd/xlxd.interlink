@@ -1,0 +1,34 @@
+##############################################################################
+#  XLXD interlink file
+#
+#  one line per entry
+#  each entry specify a remote XLX to peer with
+#  format:
+#    <callsign> <ip> <list of module shared>
+#  example:
+#    XLX270 158.64.26.132 ACD
+#
+#  note: the remote XLX must list this XLX in it's interlink file
+#        for the link to be established
+#
+#############################################################################
+XLX007 80.69.86.234 ABT
+XLX049 212.71.234.224 A
+XLX076 xrf076.xreflector-jp.org A
+#XLX087 44.137.36.209 H
+XLX088 xlx088.pa4tw.nl BT
+XLX204 xlx204.ph0dv.nl ABT
+#XLX270 xlx.epf.lu A
+XLX335 185.206.145.2 A
+XLX411 pa0rob.ddns.net ABT
+XLX444 xlx444.pa3dfn.nl ABT
+XLX570 104.128.230.153 A
+#XLX573 216.189.148.204 A
+XLX699 xlx.tekniksnack.se A
+XLX717 xlx717.pi9noz.ampr.org BT
+XLX766 xlx.amrase.org.br A
+XLX789 xrf789.dstarxlx.com.br A
+#XLX850 88.198.94.77 A 
+##XLX909 xlx909.ealink.org A 
+XLX909 216.86.147.198 A
+#XLX999 xrf999.no-ip.org A
