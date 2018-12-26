@@ -7,7 +7,7 @@ if (isset($_POST['password'])) {
 
 if (isset($_SESSION['password'])) {
    
-   if ($_SESSION['password'] != "-D-Star+") {
+   if ($_SESSION['password'] != "wErOblo") {
    echo '
    <form name="frmpass" action="./xlxlog.php" method="post">
    
@@ -58,7 +58,7 @@ else {
 
 <?php
    $a = array();
-   $handle = fopen("/var/log/messages","r");
+   $handle = fopen("/var/log/xlxd.log","r");
    if ($handle) {
       while(!feof($handle)) {
          $a[] = fgets($handle, 1024);
