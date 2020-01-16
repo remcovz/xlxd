@@ -34,7 +34,7 @@
 
 // compare function for std::map::find
 
-struct CallsignCompare
+struct CDmridDirCallsignCompare
 {
     bool operator() (const CCallsign &cs1, const CCallsign &cs2) const
     { return cs1.HasLowerCallsign(cs2);}
@@ -80,7 +80,7 @@ protected:
 protected:
 	// data
     std::map <uint32, CCallsign> m_CallsignMap;
-    std::map <CCallsign, uint32, CallsignCompare> m_DmridMap;
+    std::map <CCallsign, uint32, CDmridDirCallsignCompare> m_DmridMap;
     
     // Lock()
     std::mutex          m_Mutex;

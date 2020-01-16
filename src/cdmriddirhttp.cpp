@@ -85,7 +85,7 @@ bool CDmridDirHttp::RefreshContent(const CBuffer &buffer)
     }
     
     // report
-    std::cout << "Read " << m_DmridMap.size() << " DMR id from xlxapi.rlx.lu database " << std::endl;
+    std::cout << "Read " << m_DmridMap.size() << " DMR ids from xlxapi.rlx.lu database " << std::endl;
     
     // done
     return ok;
@@ -96,7 +96,6 @@ bool CDmridDirHttp::RefreshContent(const CBuffer &buffer)
 // httpd helpers
 
 #define DMRID_HTTPGET_SIZEMAX       (256)
-#define DMRID_TEXTFILE_SIZEMAX      (10*1024*1024)
 
 bool CDmridDirHttp::HttpGet(const char *hostname, const char *filename, int port, CBuffer *buffer)
 {
