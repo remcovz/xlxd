@@ -144,7 +144,7 @@ bool CDmridDirFile::RefreshContent(const CBuffer &buffer)
     }
     
     // report
-    std::cout << "Read " << m_DmridMap.size() << " DMR id from file " << DMRIDDB_PATH << std::endl;
+    std::cout << "Read " << m_DmridMap.size() << " DMR ids from file " << DMRIDDB_PATH << std::endl;
     
     // done
     return ok;
