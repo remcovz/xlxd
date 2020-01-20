@@ -38,7 +38,8 @@ $PageOptions['ModuleNames'] = array();					// Module nomination
 $PageOptions['ModuleNames']['A']                     = 'Int.';
 $PageOptions['ModuleNames']['B']                     = 'Nederland';
 $PageOptions['ModuleNames']['C']                     = 'National';
-$PageOptions['ModuleNames']['T']                     = 'Peanut testing';
+$PageOptions['ModuleNames']['T']                     = 'Techniek';
+$PageOptions['ModuleNames']['X']                     = 'MMX411';
 
 $PageOptions['MetaDescription']                      = 'XLX is a D-Star Reflector System for Ham Radio Operators.';	// Meta Tag Values, usefull for Search Engine
 $PageOptions['MetaKeywords']                         = 'Ham Radio, D-Star, XReflector, XLX, XRF, DCS, REF, ';		// Meta Tag Values, usefull forSearch Engine
