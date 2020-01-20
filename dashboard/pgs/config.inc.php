@@ -56,7 +56,7 @@ $Service['PIDFile']                                  = '/var/log/xlxd.pid';
 $Service['XMLFile']                                  = '/var/log/xlxd.xml';
 
 $CallingHome['Active']                               = true;					// xlx phone home, true or false
-$CallingHome['MyDashBoardURL']                       = 'http://pa4tw.nl/xlx';			// dashboard url
+$CallingHome['MyDashBoardURL']                       = 'https://pa4tw.nl/xlx';			// dashboard url
 $CallingHome['ServerURL']                            = 'http://xlxapi.rlx.lu/api.php';		// database server, do not change !!!!
 $CallingHome['PushDelay']                            = 600;					// push delay in seconds
 $CallingHome['Country']                              = "The Netherlands";				// Country
