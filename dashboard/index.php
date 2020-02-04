@@ -181,6 +181,25 @@ else {
    <div style="width:100%;text-align:center;margin-top:50px;"><a href="mailto:<?php echo $PageOptions['ContactEmail']; ?>" style="font-family:verdana;color:#000000;font-size:12pt;text-decoration:none;"><?php echo $PageOptions['ContactEmail']; ?></a></div>
 
    </div>
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  _paq.push(["setCookieDomain", "*.pa4tw.nl"]);
+  _paq.push(["setDomains", ["*.pa4tw.nl","*.ham.zuijlen.eu","*.pd4tw.nl"]]);
+  _paq.push(['trackPageView']);
+_paq.push(['enableHeartBeatTimer', 15]);
+_paq.push(['trackAllContentImpressions']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://www.zuijlen.eu/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+<noscript><p><img src="https://www.zuijlen.eu/piwik/piwik.php?idsite=1&rec=1" style="border:0;" alt="" /></p></noscript>
 
 </body>
 </html>
