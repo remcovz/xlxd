@@ -1,4 +1,4 @@
-# Copyright
+﻿# Copyright
 
 © 2016 Jean-Luc Deltombe LX3JL and Luc Engelmann LX1IQ
 
@@ -127,11 +127,13 @@ XLX Server requires the following ports to be open and forwarded properly for in
  - UDP port 62030         (MMDVM protocol)
  - UDP port 10100         (AMBE controller port)
  - UDP port 10101 - 10199 (AMBE transcoding port)
+ - UDP port 12345 - 12346 (Icom Terminal presence and request port)
+ - UDP port 40000         (Icom Terminal dv port)
 
 # YSF Master Server
 
 Pay attention, the XLX Server acts as an YSF Master, which provides 26 wires-x rooms.
 It has nothing to do with the regular YSFReflector network, hence you don’t need to register your XLX at ysfreflector.de !
+Nevertheless it is possible.
 
-
-© 2016 Jean-Luc Deltombe and Luc Engelmann LX1IQ
+© 2016 Jean-Luc Deltombe (LX3JL) and Luc Engelmann (LX1IQ)
